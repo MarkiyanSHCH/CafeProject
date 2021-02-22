@@ -6,6 +6,7 @@ namespace CafeLib.Repository.XML
 {
     public class EmployeeRep:Repository<Employee>
     {
+
         public EmployeeRep(string _FileName = "Employee.xml")
         {
             base.FileName = _FileName;
