@@ -8,9 +8,13 @@ namespace CafeLib.Repository.XML
     {
         public CustomerRep(string _FileName = "Customer.xml")
         {
-            base.FileName = _FileName;
+            base.FileName += _FileName;
             ReadFromStorage();
         }
 
+        ~CustomerRep()
+        {
+            WriteToStorage();
+        }
     }
 }

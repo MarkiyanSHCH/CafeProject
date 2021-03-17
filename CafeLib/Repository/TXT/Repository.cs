@@ -5,24 +5,24 @@ using System.Threading.Tasks;
 
 namespace CafeLib.Repository.TXT
 {
-   
 
-    public abstract class Repository<T>: IRepository<T>
+
+    public abstract class Repository<T> : IRepository<T>
     {
         public delegate void UserMessage(string message);
         public event UserMessage Notify;
 
         public List<T> Data { get; } = new List<T>();
-        protected string FileName;
+        protected string FileName = "../../../../Data/";
 
         public void ReadFromStorage()
         {
-            if (!File.Exists("../../../../Data/" + FileName))
+            if (!File.Exists(FileName))
             {
                 throw new Exception($"Error: File({FileName}) not found");
             }
             List<String> lines = new List<string>();
-            using (StreamReader sr = new StreamReader("../../../../Data/"+FileName))
+            using (StreamReader sr = new StreamReader(FileName))
             {
                 while (!sr.EndOfStream)
                     lines.Add(sr.ReadLine());
@@ -34,11 +34,11 @@ namespace CafeLib.Repository.TXT
 
         public async void WriteToStorage()
         {
-            if (!File.Exists("../../../../Data/" + FileName))
+            if (!File.Exists(FileName))
             {
                 throw new Exception($"Error: File({FileName}) not found");
             }
-            using (StreamWriter sw = new StreamWriter("../../../../Data/"+FileName, false))
+            using (StreamWriter sw = new StreamWriter(FileName, false))
             {
 
                 await Task.Run(() => SpecificWrite(sw));
@@ -68,6 +68,7 @@ namespace CafeLib.Repository.TXT
             }
         }
 
+       
         protected abstract void SpecificRead(List<String> lines);
 
         protected abstract void SpecificWrite(StreamWriter sw);

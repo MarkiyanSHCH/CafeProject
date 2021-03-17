@@ -10,7 +10,7 @@ namespace CafeLib.Repository.XML
     public class Repository<T>:IRepository<T>
     {
         public List<T> Data { get; } = new List<T>();
-        protected string FileName;
+        protected string FileName = "../../../../Data/Xml/";
 
         public void ReadFromStorage()
         {
@@ -21,7 +21,7 @@ namespace CafeLib.Repository.XML
 
             XmlSerializer formatter = new XmlSerializer(typeof(T[]));
 
-            using (FileStream fs = new FileStream("../../../../Data/Xml/" + FileName, FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream(FileName, FileMode.OpenOrCreate))
             {
                 T[] newpeople = (T[])formatter.Deserialize(fs);
 
@@ -42,7 +42,7 @@ namespace CafeLib.Repository.XML
             //xDoc.Save("../../../../Data/Xml/" + FileName);
 
             XmlSerializer formatter = new XmlSerializer(typeof(List<T>));
-            using (FileStream fs = new FileStream("../../../../Data/Xml/" + FileName, FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream(FileName, FileMode.Create))
             {
                
                     formatter.Serialize(fs, Data);

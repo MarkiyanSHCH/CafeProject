@@ -9,8 +9,13 @@ namespace CafeLib.Repository.TXT
     {
         public EmployeeRep(string _FileName = "Employee.txt")
         {
-            base.FileName = _FileName;
+            base.FileName += _FileName;
             ReadFromStorage();
+        }
+
+        ~EmployeeRep()
+        {
+            WriteToStorage();
         }
 
         protected override void SpecificRead(List<String> lines)
@@ -24,7 +29,7 @@ namespace CafeLib.Repository.TXT
                 short age = Convert.ToInt16(tmp[2]);
                 short stars = Convert.ToInt16(tmp[3]);
                 Employee t = new Employee(firstName, lastName, age, stars);
-                Add(t);
+                base.Add(t);
             }
         }
 
@@ -36,9 +41,6 @@ namespace CafeLib.Repository.TXT
             }
         }
 
-        public void Add(Employee tmp)
-        {
-            base.Add(tmp);
-        }
+        
     }
 }

@@ -10,6 +10,7 @@
     <Folder Include="Repository\TXT\" />
     <Folder Include="Repository\Array\" />
     <Folder Include="Repository\XML\" />
+    <Folder Include="Repository\AbsFactory\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NETStandard.Library" Version="2.0.3" />

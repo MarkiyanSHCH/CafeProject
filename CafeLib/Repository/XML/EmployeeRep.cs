@@ -9,8 +9,13 @@ namespace CafeLib.Repository.XML
 
         public EmployeeRep(string _FileName = "Employee.xml")
         {
-            base.FileName = _FileName;
+            base.FileName += _FileName;
             ReadFromStorage();
+        }
+
+        ~EmployeeRep()
+        {
+            WriteToStorage();
         }
 
         //protected override void SpecificRead(XmlElement xRoot)
@@ -66,7 +71,7 @@ namespace CafeLib.Repository.XML
 
         //    var xRoot = xDoc.DocumentElement;
         //    xRoot.RemoveAll();
-           
+
         //    for (int i = 0; i < Data.Count; i++)
         //    {
 

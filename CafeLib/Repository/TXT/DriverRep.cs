@@ -9,8 +9,13 @@ namespace CafeLib.Repository.TXT
     {
         public DriverRep(string _FileName = "Driver.txt")
         {
-            base.FileName = _FileName;
+            base.FileName += _FileName;
             ReadFromStorage();
+        }
+
+        ~DriverRep()
+        {
+            WriteToStorage();
         }
 
         protected override void SpecificRead(List<String> lines)
@@ -25,7 +30,7 @@ namespace CafeLib.Repository.TXT
                 short stars = Convert.ToInt16(tmp[3]);
                 string car = tmp[4];
                 Driver t = new Driver(firstName, lastName, age, stars, car);
-                Add(t);
+                base.Add(t);
             }
         }
 
@@ -37,9 +42,6 @@ namespace CafeLib.Repository.TXT
             }
         }
 
-        public void Add(Driver tmp)
-        {
-            base.Add(tmp);
-        }
+        
     }
 }

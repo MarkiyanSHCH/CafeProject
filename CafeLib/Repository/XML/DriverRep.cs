@@ -8,9 +8,12 @@ namespace CafeLib.Repository.XML
     {
         public DriverRep(string _FileName = "Driver.xml")
         {
-            base.FileName = _FileName;
+            base.FileName += _FileName;
             ReadFromStorage();
         }
-
+        ~DriverRep()
+        {
+            WriteToStorage();
+        }
     }
 }

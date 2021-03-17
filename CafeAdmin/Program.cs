@@ -7,12 +7,12 @@ namespace CafeAdmin
 {
     class Program
     {
+        static Menu prog = new Menu();
+        static Command com = new Command();
 
         static void menu()
         {
-            Menu prog = new Menu();
-            Command com = new Command();
-
+           
             short userInput = 0;
             while (true)
             {
@@ -108,7 +108,7 @@ namespace CafeAdmin
                                                             short selCustomer;
                                                             selCustomer = Convert.ToInt16(Console.ReadLine());
                                                             com.settingCust(selCustomer - 1);
-                                                            com.customerRepository.WriteToStorage();
+                                                           //com.customerRepository.WriteToStorage();
                                                             Console.WriteLine("Customer Edited Successfully"); ;
                                                             Console.WriteLine("\nEnter some button to continue.");
                                                             Console.ReadLine();
@@ -122,7 +122,7 @@ namespace CafeAdmin
                                                             short selCustomer;
                                                             selCustomer = Convert.ToInt16(Console.ReadLine());
                                                             com.changeAddress(selCustomer - 1);
-                                                            com.customerRepository.WriteToStorage();
+                                                            //com.customerRepository.WriteToStorage();
                                                             Console.WriteLine("Customer Edited Successfully"); ;
                                                             Console.WriteLine("\nEnter some button to continue.");
                                                             Console.ReadLine();
@@ -135,7 +135,7 @@ namespace CafeAdmin
                                                             short selCustomer;
                                                             selCustomer = Convert.ToInt16(Console.ReadLine());
                                                             com.customerRepository.Data[selCustomer - 1].addBonus();
-                                                            com.customerRepository.WriteToStorage();
+                                                            //com.customerRepository.WriteToStorage();
                                                             Console.WriteLine("Bonus Added Successfully"); ;
                                                             Console.WriteLine("\nEnter some button to continue.");
                                                             Console.ReadLine();
@@ -193,7 +193,7 @@ namespace CafeAdmin
                                                             short selCustomer;
                                                             selCustomer = Convert.ToInt16(Console.ReadLine());
                                                             com.settingEmp(selCustomer - 1);
-                                                            com.employeeRepository.WriteToStorage();
+                                                            //com.employeeRepository.WriteToStorage();
                                                             Console.WriteLine("Employee Edited Successfully");
                                                             Console.WriteLine("\nEnter some button to continue.");
                                                             Console.ReadLine();
@@ -207,7 +207,7 @@ namespace CafeAdmin
                                                             short selCustomer;
                                                             selCustomer = Convert.ToInt16(Console.ReadLine());
                                                             com.setRating(selCustomer - 1);
-                                                            com.employeeRepository.WriteToStorage();
+                                                            //com.employeeRepository.WriteToStorage();
                                                             Console.WriteLine("Rating Successfully");
                                                             Console.WriteLine("\nEnter some button to continue.");
                                                             Console.ReadLine();
@@ -266,7 +266,7 @@ namespace CafeAdmin
                                                             short selCustomer;
                                                             selCustomer = Convert.ToInt16(Console.ReadLine());
                                                             com.settingDriv(selCustomer - 1);
-                                                            com.driverRepository.WriteToStorage();
+                                                           // com.driverRepository.WriteToStorage();
                                                             Console.WriteLine("Driver Edited Successfully");
                                                             Console.WriteLine("\nEnter some button to continue.");
                                                             Console.ReadLine();
@@ -280,7 +280,7 @@ namespace CafeAdmin
                                                             short selCustomer;
                                                             selCustomer = Convert.ToInt16(Console.ReadLine());
                                                             com.setRating1(selCustomer - 1);
-                                                            com.driverRepository.WriteToStorage();
+                                                           // com.driverRepository.WriteToStorage();
                                                             Console.WriteLine("Rating Successfully");
                                                             Console.WriteLine("\nEnter some button to continue.");
                                                             Console.ReadLine();
@@ -353,6 +353,7 @@ namespace CafeAdmin
             catch(Exception ex)
             {
                 Console.Error.WriteLine(ex);
+                Console.ReadKey();
             }
 
             

@@ -1,15 +1,28 @@
 ﻿using System;
 using CafeLib.Models;
 using CafeLib.Repository;
-using CafeLib.Repository.TXT;
+
 
 namespace CafeAdmin
 {
     public class Command
     {
-        public IRepository<Employee> employeeRepository = new EmployeeRep();
-        public IRepository<Driver> driverRepository = new DriverRep();
-        public IRepository<Customer> customerRepository = new CustomerRep();
+        //public IRepository<Employee> employeeRepository = new EmployeeRep();
+        //public IRepository<Driver> driverRepository = new DriverRep();
+        //public IRepository<Customer> customerRepository = new CustomerRep();
+        RepositoryFactory data;
+        public IRepository<Employee> employeeRepository;
+        public IRepository<Customer> customerRepository;
+        public IRepository<Driver> driverRepository;
+
+        public Command()
+        {
+            data = RepositoryFactory.CreateData("XML");
+            employeeRepository = data.GetEmpRepository();
+            customerRepository = data.GetCustRepository();
+            driverRepository = data.GetDrivRepository();
+        }
+
 
         private static void DisplayMessage(string message)
         {
@@ -22,7 +35,7 @@ namespace CafeAdmin
             string lastNameTmp;
             short ageTmp;
             short starsTmp = 0;
-
+            
             Console.WriteLine("Enter first name: ");
             firstNameTmp = Console.ReadLine();
             Console.WriteLine("Enter last name: ");

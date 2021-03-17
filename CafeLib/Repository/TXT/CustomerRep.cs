@@ -9,8 +9,13 @@ namespace CafeLib.Repository.TXT
     {
         public CustomerRep(string _FileName = "Customer.txt")
         {
-            base.FileName = _FileName;
+            base.FileName += _FileName;
             ReadFromStorage();
+        }
+
+        ~CustomerRep()
+        {
+            WriteToStorage();
         }
 
         protected override void SpecificRead(List<String> lines)
@@ -25,7 +30,7 @@ namespace CafeLib.Repository.TXT
                 string address = tmp[3];
                 int bonus = Convert.ToInt32(tmp[4]);
                 Customer t = new Customer(firstName, lastName, age, address, bonus);
-                Add(t);
+                base.Add(t);
             }
         }
 
@@ -37,9 +42,6 @@ namespace CafeLib.Repository.TXT
             }
         }
 
-        public void Add(Customer tmp)
-        {
-            base.Add(tmp);
-        }
+        
     }
 }
